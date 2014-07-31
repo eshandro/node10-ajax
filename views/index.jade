@@ -2,7 +2,13 @@ extends layout
 
 block content
 	h1 Ajax Countries
-	button#load.btn.btn-primary Load Countries
+	form(method="post" action="search")
+		label Search for a Country
+		br
+		input(type="text" name="search-countries")
+		input#search-submit(type="submit" value="Search")
+	ul#searchDisplay
+	button#load.btn.btn-primary Load All Countries
 	ul#countriesDisplay
 
 block scripts
