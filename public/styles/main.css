@@ -1,0 +1,7 @@
+.glyphicon .thumbs {
+	margin-left: 10px;
+}
+
+.thumbs:hover {
+	cursor: pointer;
+}

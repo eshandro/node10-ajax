@@ -1,10 +1,21 @@
 $(document).ready(function() {
 	$('#load').on('click', function(e) {
-		 $.get('/countries', function(countriesList) {
+		 $.get('/countries', function(countriesList) {		 	
+		 	var li = $('<li>');
+		 	li.append('<h4>Mark the countries you visited</h3>')
+		 	$('#countriesDisplay').append(li);
 		 	for(var i=0; i < countriesList.length; i++) {
-			 	var li = $('<li>');
-			 	li.append(countriesList[i].name)
-			 	$('#countriesDisplay').append(li);
+			 	var li2 = $('<li>');
+			 	var span = $('<span>');
+			 	li2.append(countriesList[i].name);
+			 	span.addClass('glyphicon glyphicon-thumbs-up thumbs');
+			 	li2.append(span);
+			 	$('#countriesDisplay').append(li2);
+			 	if(countriesList[i].hasTraveled) {
+			 		console.log(this);
+			 		console.log($(this))
+			 		// $('.thumbs').css('color', 'green');
+			 	}
 		 	}
 		 })
 	})
@@ -22,5 +33,14 @@ $(document).ready(function() {
 		})
 
 	})
+
+	$(document).on('click', '.thumbs', function() {
+		if($(this).css('color') === 'rgb(51, 51, 51)') {
+			$(this).css('color', 'green');
+			$.post('/countries', { updateCountry: $(this).closest('li').text() }, function(countryUpdate) {
+				console.log(countryUpdate);
+			})
+		}	
+	});
 
 })

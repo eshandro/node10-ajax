@@ -16,6 +16,16 @@ app.get('/countries', function(req, res) {
 	res.send(countries);
 })
 
+app.post('/countries', function(req, res) {
+	var updateCountry = req.body.updateCountry;
+	var updateCountryObj = countries.find(function(country) {
+		return country.name === updateCountry;
+	})
+	updateCountryObj.hasTraveled = true;
+	console.log(updateCountryObj);
+	res.send('Success')
+})
+
 app.post('/search', function(req, res) {
 	var searchCountry = req.body.searchCountry;
 	var countryInfo = countries.filter(function(country) {
