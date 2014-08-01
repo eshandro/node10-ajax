@@ -1,6 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var countries = require('./models/countries.json')
+var countries = require('./models/countries.json');
+var mongoose = require('mongoose');
+var model = require('./models/models.js');
+var controller = require('./controllers/controller.js')
+
+mongoose.connect('mongodb://localhost/visitedCountries');
 
 var app = express();
 app.set('view engine', 'jade');
@@ -13,6 +18,16 @@ app.get('/', function(req, res) {
 });
 
 app.get('/countries', function(req, res) {
+	if(!model.Country.find({})) {
+		for (var i = 0; i < countries.length; i++) {
+			var name = countries[i].name;
+			var frenchName = countries[i].frenchName;
+			var localName = countries[i].localName;
+			var region = countries[i].region;
+			var hasTraveled = countries[i].hasTraveled;
+	}
+
+	}
 	res.send(countries);
 })
 
