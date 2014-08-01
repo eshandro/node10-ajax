@@ -22,7 +22,7 @@ app.post('/countries', function(req, res) {
 	for(var i = 0; i < countries.length; i++) {
 		if(countries[i].name === updateCountry) {
 			countries[i].hasTraveled = true;
-			console.log(countries[i])
+			// console.log(countries[i])
 			return;
 		}	
 	}
