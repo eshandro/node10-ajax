@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	$('#load').on('click', function(e) {
 		 $.get('/countries', function(countriesList) {		 	
+		 	$('#countriesDisplay').empty();
 		 	var li = $('<li>');
 		 	li.append('<h4>Mark the countries you visited</h3>')
 		 	$('#countriesDisplay').append(li);
@@ -12,8 +13,8 @@ $(document).ready(function() {
 			 	li2.append(span);
 			 	$('#countriesDisplay').append(li2);
 			 	if(countriesList[i].hasTraveled) {
-			 		console.log(this);
-			 		console.log($(this))
+			 		console.log($('li:contains("' + countriesList[i].name + '")').children());
+
 			 		// $('.thumbs').css('color', 'green');
 			 	}
 		 	}

@@ -18,13 +18,15 @@ app.get('/countries', function(req, res) {
 
 app.post('/countries', function(req, res) {
 	var updateCountry = req.body.updateCountry;
-	var updateCountryObj = countries.find(function(country) {
-		return country.name === updateCountry;
-	})
-	updateCountryObj.hasTraveled = true;
-	console.log(updateCountryObj);
-	res.send('Success')
-})
+	res.send('Success');
+	for(var i = 0; i < countries.length; i++) {
+		if(countries[i].name === updateCountry) {
+			countries[i].hasTraveled = true;
+			console.log(countries[i])
+			return;
+		}	
+	}
+});
 
 app.post('/search', function(req, res) {
 	var searchCountry = req.body.searchCountry;
