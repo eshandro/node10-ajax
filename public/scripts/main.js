@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('#load').on('click', function(e) {
+	$('#load').one('click', function(e) {
 		 $.get('/countries', function(countriesList) {		 	
 		 	$('#countriesDisplay').empty();
 		 	var li = $('<li>');
@@ -13,8 +13,7 @@ $(document).ready(function() {
 			 	li2.append(span);
 			 	$('#countriesDisplay').append(li2);
 			 	if(countriesList[i].hasTraveled) {
-			 		$('li:contains("' + countriesList[i].name + '")').children().css('color', 'green');
-			 		// console.log('Thumb stays green');	
+			 		$('li:contains("' + countriesList[i].name + '")').children().css('color', 'green');	
 			 	}
 		 	}
 		 })
@@ -38,7 +37,7 @@ $(document).ready(function() {
 		if($(this).css('color') === 'rgb(51, 51, 51)') {
 			$(this).css('color', 'green');
 			$.post('/countries', { updateCountry: $(this).closest('li').text() }, function(countryUpdate) {
-				// console.log(countryUpdate);
+				console.log(countryUpdate);
 			})
 		}	
 	});

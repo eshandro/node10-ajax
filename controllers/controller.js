@@ -1,19 +1,18 @@
-var model = require('./models/models.js');
-var countries = require('./models/countries.json');
+var countries = require('../models/countries.json');
 var mongoose = require('mongoose');
+var model = require('../models/models.js');
+
 
 var countryApp = {
-	newCountry: function(name, frenchName, localName, region, hasTraveled) {
-		var newCountry = new Country({
-			name: name,
-			frenchName: frenchName,
-			localName: localName,
-			region: region,
-			hasTraveled: hasTraveled;
-		});
+	createCountry: function(name, frenchName, localName, region, hasTraveled) {
+			this.name = name;
+			this.frenchName = frenchName;
+			this.localName = localName;
+			this.region = region;
+			this.hasTraveled = hasTraveled;
 	},
 }
 
 module.exports = {
-	countryApp: countryApp;
+	countryApp: countryApp,
 }
